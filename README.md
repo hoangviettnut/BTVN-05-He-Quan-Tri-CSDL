@@ -27,8 +27,11 @@ B. Nội dung Bài tập 05:
 # Bài Làm
 ## A. Trình bày lại đầu bài của đồ án PT&TKHT
 1. Khái quát Đồ án:
+
 a) Tên đồ án: Phân tích thiết kế hệ thống đặt đồ ăn online cho cửa hàng đồ ăn
+
 b) Yêu cầu: Thiết kế hệ thống đặt đồ ăn online cho cửa hàng đồ ăn nhằm hiện đại và đơn giản hóa quá trình mua- bán cho khách hàng, làm việc kiểm soát dịch vụ tại quán dễ dàng và tiện lợi hơn thay vì phương pháp pháp truyền thống.
+
 2. CSDL của Đồ án:
 
 a) Các bảng trong Database: ![Ảnh1](https://github.com/user-attachments/assets/f3f84330-cfd9-41d7-88e5-ff216e6d309b)
