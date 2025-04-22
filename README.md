@@ -31,26 +31,36 @@ a) Tên đồ án: Phân tích thiết kế hệ thống đặt đồ ăn online
 b) Yêu cầu: Thiết kế hệ thống đặt đồ ăn online cho quán cơm "Sinh viên TNUT" nhằm hiện đại và đơn giản hóa quá trình mua- bán cho khách hàng, làm việc kiểm soát dịch vụ tại quán dễ dàng và tiện lợi hơn thay vì phương pháp pháp truyền thống.
 2. CSDL của Đồ án:
 
-a) Các bảng trong Database: ![Database and Tables](https://github.com/user-attachments/assets/59efd06b-e811-408e-9a78-23c02b7e5e12)
-b) Liên kết giữa các bảng (Đã chứa các khóa cần thiết): ![image](https://github.com/user-attachments/assets/fd781342-f221-42a3-9d89-0eb208e6b473)
+a) Các bảng trong Database: ![Ảnh1](https://github.com/user-attachments/assets/f3f84330-cfd9-41d7-88e5-ff216e6d309b)
+b) Liên kết giữa các bảng (Đã chứa các khóa cần thiết):![image](https://github.com/user-attachments/assets/0349ea10-f7ac-48fe-a34c-f4e0c2625b4e)
 ## B. Nội dung Bài Tập 05:
 1. CSDL của đồ án đã nêu ở phần A
-2. Thêm các trường phi chuẩn (Code đã chạy Successfully) :
+2. Thêm trường phi chuẩn TongTien cho bảng DonHang (Code đã chạy Successfully) :![image](https://github.com/user-attachments/assets/749a1408-e46a-4626-8d8f-a1d50d7b9eca)
+* Sau khi thêm trường phi chuẩn: ![image](https://github.com/user-attachments/assets/66e52904-9342-44b1-90ed-3108b1a16784)
+Kết luận:
+a) Lưu tổng giá trị đơn hàng, bao gồm tất cả món ăn được đặt.
+a) Dữ liệu này giúp hệ thống dễ dàng tính toán tổng số tiền cần thanh toán.
+c) Khi xử lý thanh toán hoặc hóa đơn, có thể truy vấn trực tiếp từ bảng DonHang.
 
-a) Thêm cột So_Mon vào bảng Don_Hang nếu chưa tồn tại: ![image](https://github.com/user-attachments/assets/71efe1cf-d282-4cc7-a9ea-e6fd59c423b6)
+3.  Tạo Trigger trên bảng DonHang
+a) Mục tiêu: Tự động kiểm tra nếu tổng tiền của đơn hàng quá thấp hoặc quá cao, giá từ 10.000 VNĐ - 500.000 VNĐ
+b) Code Trigger: ![image](https://github.com/user-attachments/assets/176ba716-9935-4322-97b9-f9ccffee524a)
 
-b) Thêm cột Tong_Tien vào bảng Don_Hang nếu chưa tồn tại: ![image](https://github.com/user-attachments/assets/eabfeeb4-17cd-4ac1-a19f-90dd2231a452)
+4. Nhập dữ liệu Demo để test:
+a) Nhập dữ liệu lần 1:  ![image](https://github.com/user-attachments/assets/835e295a-3406-42b1-98d9-b6d589db1972)
+Lỗi này xảy ra vì Trigger KiemTraTongTien đã kích hoạt và phát hiện rằng Tổng tiền đơn hàng không nằm trong khoảng hợp lệ (10,000 - 500,000 VND), dẫn đến RAISERROR và ROLLBACK TRANSACTION, khiến lệnh INSERT bị hủy bỏ.
+b) Nhập dữ liệu lần 2: ![image](https://github.com/user-attachments/assets/fb9d5e79-8cc8-4bfe-972b-57d2e0829360)
+Tại MaDH 1 nhập được do TongTien thỏa mãn Trigger
+Tại MaDH 2 không nhập được do TongTien không thỏa mãn Trigger
 
-c) Thêm cột Gia_Mon vào bảng Mon_An nếu chưa tồn tại: ![image](https://github.com/user-attachments/assets/61f992c5-ad7f-40aa-8fad-d97123f01c8f)
+5. Công dụng của Trigger với đồ án:
+a)Tự động cập nhật tổng tiền đơn hàng
+b) Hỗ trợ quá trình thanh toán
+c) Giảm tải tính toán cho hệ thống
+d) Đảm bảo dữ liệu nhất quán
 
-Kết luận: Việc thêm các trường phi chuẩn như So_Mon, Tong_Tien trong bảng Don_Hang và Gia_Mon trong bảng Mon_An giúp tăng tốc độ truy vấn, giảm tải tính toán tại thời điểm chạy và cải thiện trải nghiệm người dùng—điều đặc biệt quan trọng với các hệ thống có lượng giao dịch lớn. Thay vì truy vấn thông qua bảng khác thì CSDL sẽ truy vấn trực tiếp vào bảng hiện tại!
-### 3. Viết Trigger cho bảng Chi_Tiet_Don nhằm tự động cập nhật các trường phi chuẩn trong bảng Don_Hang. Mỗi khi có thêm, sửa hoặc xóa dữ liệu trong Chi_Tiet_Don, trigger này sẽ cập nhật lại So_Mon và Tong_Tien
-a) Mục tiêu:
-- Giảm thiểu việc tính toán động qua các phép JOIN tại thời điểm truy vấn,
-- Tăng tốc độ truy xuất dữ liệu từ Don_Hang,
-- Đảm bảo rằng các giá trị phi chuẩn luôn được cập nhật khi dữ liệu chi tiết thay đổi.
-b) Code Trigger: ![image](https://github.com/user-attachments/assets/346d3694-b935-4fd8-9f95-4915a72b7904)
-4. Nhập dữ liệu Demo để test: 
+
+
 
 
 
