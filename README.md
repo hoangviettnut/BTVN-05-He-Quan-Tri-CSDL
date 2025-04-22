@@ -47,11 +47,14 @@ a) Mục tiêu: Tự động kiểm tra nếu tổng tiền của đơn hàng qu
 b) Code Trigger: ![image](https://github.com/user-attachments/assets/176ba716-9935-4322-97b9-f9ccffee524a)
 
 4. Nhập dữ liệu Demo để test:
+
 a) Nhập dữ liệu lần 1:  ![image](https://github.com/user-attachments/assets/835e295a-3406-42b1-98d9-b6d589db1972)
 Lỗi này xảy ra vì Trigger KiemTraTongTien đã kích hoạt và phát hiện rằng Tổng tiền đơn hàng không nằm trong khoảng hợp lệ (10,000 - 500,000 VND), dẫn đến RAISERROR và ROLLBACK TRANSACTION, khiến lệnh INSERT bị hủy bỏ.
+
 b) Nhập dữ liệu lần 2: ![image](https://github.com/user-attachments/assets/fb9d5e79-8cc8-4bfe-972b-57d2e0829360)
-Tại MaDH 1 nhập được do TongTien thỏa mãn Trigger
-Tại MaDH 2 không nhập được do TongTien không thỏa mãn Trigger
+* Tại MaDH 1 nhập được do TongTien thỏa mãn Trigger
+
+* Tại MaDH 2 không nhập được do TongTien không thỏa mãn Trigger
 
 5. Công dụng của Trigger với đồ án:
 a)Tự động cập nhật tổng tiền đơn hàng
