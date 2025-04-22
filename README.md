@@ -37,14 +37,18 @@ b) Liên kết giữa các bảng (Đã chứa các khóa cần thiết):![image
 ## B. Nội dung Bài Tập 05:
 1. CSDL của đồ án đã nêu ở phần A
 
-2. Thêm trường phi chuẩn DanhMuc cho bảng MonAn (Code đã chạy Successfully) :![image](https://github.com/user-attachments/assets/5ab91efc-82ad-42f0-87ee-7a281377c863)
+2. Thêm trường phi chuẩn DanhMuc cho bảng MonAn (Code đã chạy Successfully) :![image](https://github.com/user-attachments/assets/1b887f2d-02d8-4263-8c85-ee56c2f00eb9)
+
 Sau khi thêm trường phi chuẩn (Bảng đã xuất hiện thêm DanhMuc): ![image](https://github.com/user-attachments/assets/df9f9ef5-d689-4a98-a240-d4f61468ac60)
 Kết luận: Thêm trường DanhMuc vào bảng MonAn để phân loại món ăn theo từng nhóm như "Món chính", "Đồ uống" và "Tráng miệng". Điều này giúp hệ thống linh hoạt hơn khi hiển thị thực đơn và hỗ trợ quản lý dễ dàng.
 
 3.  Tạo Trigger trên bảng MonAn<br>
-a) Mục tiêu: Đảm bảo dữ liệu nhập vào bảng MonAn luôn hợp lệ<br>
+a) Mục tiêu:
++ Đảm bảo dữ liệu nhập vào bảng MonAn luôn hợp lệ<br>
++ Ngăn lỗi sai khi nhập liệu<br>
++ Có thể mở rộng để kiểm tra thêm điều kiện<br>
++ Tiết kiệm thời gian kiểm tra thủ công <br>
 b) Code Trigger: ![image](https://github.com/user-attachments/assets/f7861695-2d92-41d6-bb1a-4f24f52b1cf1)
-
 
 4. Nhập dữ liệu Demo để test:<br>
 a) Nhập dữ liệu lần 1:  ![image](https://github.com/user-attachments/assets/595d5e85-7f44-4f36-a632-6b6e0bbb1e3b)<br>
