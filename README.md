@@ -3,14 +3,14 @@
 
 # SUBJECT: Trigger on mssql
 
-A. Trình bày lại đầu bài của đồ án PT&TKHT:
+## A. Trình bày lại đầu bài của đồ án PT&TKHT:
 1. Mô tả bài toán của đồ án PT&TKHT, 
    đưa ra yêu cầu của bài toán đó
 2. Cơ sở dữ liệu của Đồ án PT&TKHT :
    Có database với các bảng dữ liệu cần thiết (3nf),
    Các bảng này đã có PK, FK, CK cần thiết
  
-B. Nội dung Bài tập 05:
+## B. Nội dung Bài tập 05:
 1. Dựa trên cơ sở là csdl của Đồ án
 2. Tìm cách bổ xung thêm 1 (hoặc vài) trường phi chuẩn
    (là trường tính toán đc, nhưng thêm vào thì ok hơn,
@@ -26,44 +26,38 @@ B. Nội dung Bài tập 05:
 ## DeadLine 23H59:59 NGÀY 23/04/2025
 # Bài Làm
 ## A. Trình bày lại đầu bài của đồ án PT&TKHT
-1. Khái quát Đồ án:
-
-a) Tên đồ án: Phân tích thiết kế hệ thống đặt đồ ăn online cho cửa hàng đồ ăn TNUT
-
+1. Khái quát Đồ án:<br>
+a) Tên đồ án: Phân tích thiết kế hệ thống đặt đồ ăn online cho cửa hàng đồ ăn TNUT<br>
 b) Yêu cầu: Thiết kế hệ thống đặt đồ ăn online cho cửa hàng đồ ăn nhằm hiện đại và đơn giản hóa quá trình mua- bán cho khách hàng, làm việc kiểm soát dịch vụ tại quán dễ dàng và tiện lợi hơn thay vì phương pháp pháp truyền thống.
 
-2. CSDL của Đồ án:
+2. CSDL của Đồ án:<br>
+a) Các bảng trong Database: ![image](https://github.com/user-attachments/assets/5a494ddc-a0d4-4181-9323-6f408b385057)
+b) Liên kết giữa các bảng (Đã chứa các khóa cần thiết):![image](https://github.com/user-attachments/assets/e8e71668-ec13-4f11-9818-8a919bec0923)
 
-a) Các bảng trong Database: ![Ảnh1](https://github.com/user-attachments/assets/f3f84330-cfd9-41d7-88e5-ff216e6d309b)
-b) Liên kết giữa các bảng (Đã chứa các khóa cần thiết):![image](https://github.com/user-attachments/assets/0349ea10-f7ac-48fe-a34c-f4e0c2625b4e)
 ## B. Nội dung Bài Tập 05:
 1. CSDL của đồ án đã nêu ở phần A
-2. Thêm trường phi chuẩn TongTien cho bảng DonHang (Code đã chạy Successfully) :![image](https://github.com/user-attachments/assets/749a1408-e46a-4626-8d8f-a1d50d7b9eca)
-* Sau khi thêm trường phi chuẩn: ![image](https://github.com/user-attachments/assets/66e52904-9342-44b1-90ed-3108b1a16784)
-Kết luận:
-a) Lưu tổng giá trị đơn hàng, bao gồm tất cả món ăn được đặt.
-a) Dữ liệu này giúp hệ thống dễ dàng tính toán tổng số tiền cần thanh toán.
-c) Khi xử lý thanh toán hoặc hóa đơn, có thể truy vấn trực tiếp từ bảng DonHang.
 
-3.  Tạo Trigger trên bảng DonHang
-a) Mục tiêu: Tự động kiểm tra nếu tổng tiền của đơn hàng quá thấp hoặc quá cao, giá từ 10.000 VNĐ - 500.000 VNĐ
-b) Code Trigger: ![image](https://github.com/user-attachments/assets/176ba716-9935-4322-97b9-f9ccffee524a)
+2. Thêm trường phi chuẩn DanhMuc cho bảng MonAn (Code đã chạy Successfully) :![image](https://github.com/user-attachments/assets/5ab91efc-82ad-42f0-87ee-7a281377c863)
+Sau khi thêm trường phi chuẩn (Bảng đã xuất hiện thêm DanhMuc): ![image](https://github.com/user-attachments/assets/df9f9ef5-d689-4a98-a240-d4f61468ac60)
+Kết luận: Thêm trường DanhMuc vào bảng MonAn để phân loại món ăn theo từng nhóm như "Món chính", "Đồ uống" và "Tráng miệng". Điều này giúp hệ thống linh hoạt hơn khi hiển thị thực đơn và hỗ trợ quản lý dễ dàng.
 
-4. Nhập dữ liệu Demo để test:
+3.  Tạo Trigger trên bảng MonAn<br>
+a) Mục tiêu: Đảm bảo dữ liệu nhập vào bảng MonAn luôn hợp lệ<br>
+b) Code Trigger: ![image](https://github.com/user-attachments/assets/f7861695-2d92-41d6-bb1a-4f24f52b1cf1)
 
-a) Nhập dữ liệu lần 1:  ![image](https://github.com/user-attachments/assets/835e295a-3406-42b1-98d9-b6d589db1972)
-Lỗi này xảy ra vì Trigger KiemTraTongTien đã kích hoạt và phát hiện rằng Tổng tiền đơn hàng không nằm trong khoảng hợp lệ (10,000 - 500,000 VND), dẫn đến RAISERROR và ROLLBACK TRANSACTION, khiến lệnh INSERT bị hủy bỏ.
 
-b) Nhập dữ liệu lần 2: ![image](https://github.com/user-attachments/assets/fb9d5e79-8cc8-4bfe-972b-57d2e0829360)
-* Tại MaDH 1 nhập được do TongTien thỏa mãn Trigger
+4. Nhập dữ liệu Demo để test:<br>
+a) Nhập dữ liệu lần 1:  ![image](https://github.com/user-attachments/assets/595d5e85-7f44-4f36-a632-6b6e0bbb1e3b)<br>
+Dòng thứ nhất ta nhập thành công do giá trị ở DanhMuc phù hợp với điều kiện trước đó trong Trigger đã đặt ra<br>
+b) Nhập dữ liệu lần 2: ![image](https://github.com/user-attachments/assets/dab8062e-612d-41e3-9a27-ed159dd18e7f)<br>
+Dòng thứ 2 hệ thống đã báo lỗi do phần DanhMuc ta nhập không khớp với điều kiện mà Trigger đặt ra<br>
 
-* Tại MaDH 2 không nhập được do TongTien không thỏa mãn Trigger
-
-5. Công dụng của Trigger với đồ án:
-a)Tự động cập nhật tổng tiền đơn hàng
-b) Hỗ trợ quá trình thanh toán
-c) Giảm tải tính toán cho hệ thống
-d) Đảm bảo dữ liệu nhất quán
+5. Công dụng của Trigger với đồ án:<br>
+a) Quản lí đơn hàng, món ăn tốt hơn <br>
+b) Hỗ trợ quá trình quản lí hệ thống <br>
+c) Giảm tải tính toán cho hệ thống <br>
+d) Đảm bảo dữ liệu nhất quán <br>
+### NOTE: Đây chỉ CSDL ban đầu cho đồ án. Trong quá trình thực hiện có thể sẽ có thêm nhiều sự thay đổi với CSDL trong bài tập trên!
 
 
 
